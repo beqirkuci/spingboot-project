@@ -23,6 +23,9 @@ public class Users {
 	@Lob
 	private String email;
 
+	@Lob
+	private String password;
+
 
 	public Users() {
 	}
@@ -62,6 +65,14 @@ public class Users {
 
 	public Users(Long id) {
 		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Users(Long id, String name, String surname, String email) {

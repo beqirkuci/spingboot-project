@@ -1,7 +1,5 @@
 package com.internet.base.application.service.Impl;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.internet.base.application.model.Users;
@@ -20,8 +19,11 @@ import com.internet.base.application.service.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Override
 	public Users addUser(Users users) {
+		users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
 		return userRepository.save(users);
 	}
 	@Override
